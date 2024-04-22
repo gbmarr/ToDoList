@@ -25,33 +25,8 @@
                 include_once '../Controllers/TaskActions.php';
                 include_once '../Models/Task.php';
 
-                $tareas = getTasks();
-
-                $echo = "";
-
-                echo "<ul>";
-                foreach ($tareas as $tarea) {
-                    $echo .= '<li>' . $tarea->Description . '</li>';
-                }
-
-                if(!empty($echo)){
-                    echo $echo;
-                }else {
-                    echo "<li>No hay tareas disponibles</li>";
-                }
-                echo "</ul>";
+                listTasks();
                 ?>
-
-                <!-- <div class="task__card">
-                    <h3 class="task__card__title"></h3>
-                    <article class="task__card__desc"></article>
-                    <p class="task__card__priority"></p>
-                    <div>
-                        <button>Completar</button>
-                        <button>Editar</button>
-                        <button>Eliminar</button>
-                    </div>
-                </div> -->
             </div>
         </section>
         <aside class="aside__container">
