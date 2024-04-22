@@ -1,0 +1,116 @@
+/* paleta de colores */
+:root {
+    --yellow: #f9c80eff;
+    --rich-black: #0c1618ff;
+    --spring-green: #20fc8fff;
+    --red-pantone: #ef233cff;
+    --white: #fcfaf9ff;
+    --grey: #a7a3a0;
+}
+
+/* ESTILOS GENERALES DEL DOCUMENTO */
+* {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font: 16px "Raleway", sans-serif;
+    background-color: transparent;
+    color: var(--grey);
+    list-style: none;
+    text-decoration: none;
+}
+
+/* ESTILOS DEL HEADER */
+.header {
+    padding: .5em;
+    background-color: var(--spring-green);
+}
+
+h1 {
+    font: 2.5em "Fjalla One", sans-serif;
+    color: var(--rich-black);
+}
+
+/* ESTILOS DEL MAIN CONTAINER */
+.main__container {
+    background-color: var(--rich-black);
+    display: flex;
+    flex-direction: row wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tasks__container {
+    width: 70%;
+    height: 100vh;
+    padding: 1em;
+}
+
+.tasks__container__list {
+    background-color: var(--spring-green);
+    width: 80%;
+    height: 90%;
+    margin: 1em auto;
+    padding: 1em;
+    border-radius: 10px;
+}
+
+h2 {
+    font: 1.5em "Fjalla One", sans-serif;
+}
+
+/* ESTILOS DEL ASIDE CONTAINER */
+.aside__container {
+    background: linear-gradient(var(--rich-black) 50%, var(--spring-green));
+    width: 30%;
+    height: 100vh;
+    padding: 1em;
+}
+
+/* ESTILOS DEL FORMULARIO */
+form {
+    padding: 1em;
+    width: 80%;
+    height: 100%;
+    margin: auto;
+}
+
+label {
+    color: var(--grey);
+    font-style: italic;
+    font-weight: bold;
+}
+
+input, select, textarea {
+    background-color: var(--white);
+    color: var(--rich-black);
+    padding: .3em;
+    margin: 1em;
+    border-radius: 5px;
+    resize: none;
+}
+
+button {
+    background-color: var(--spring-green);
+    font-weight: bold;
+    width: fit-content;
+    margin: auto;
+    padding: .3em;
+    color: var(--rich-black);
+    border: none;
+    border-radius: 5px;
+}
+
+/* ESTILOS DEL FOOTER */
+footer {
+    padding: .5em;
+    background-color: var(--grey);
+}
+
+.footer__text {
+    width: fit-content;
+    margin: auto;
+    font-style: italic;
+    color: var(--rich-black);
+}
