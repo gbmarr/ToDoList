@@ -42,11 +42,14 @@ function listTasks(){
             $echo .= "<div class='task__card'>
                     <h3 class='task__card__title'>{$task->Title}</h3>
                     <article class='task__card__desc'>{$task->Description}</article>
-                    <p class='task__card__priority'>{$task->Priority}</p>
+                    <p class='task__card__priority'>Prioridad: {$task->Priority}</p>
+                <div class='task__card__btn__container'>
                 <div>
-                    <button>Completar</button>
-                    <button>Editar</button>
-                    <button>Eliminar</button>
+                    <button class='btn__complete'>Completar</button>
+                    <button class='btn__edit'>Editar</button>
+                    <button class='btn__delete'>Eliminar</button>
+                </div>
+                    <button class='btn__verdetalle'>Detalle</button>
                 </div>
                 </div>";
         }    

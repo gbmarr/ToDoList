@@ -35,9 +35,11 @@
                 <label for="name">Tarea:</label><input name="tarea" type="text">
                 <label for="desc">Descripción:</label><textarea name="desc" cols="30" rows="10"></textarea>
                 <label for="importancia">Prioridad:</label><select name="importancia" id="">
-                    <option value="baja">Baja</option>
-                    <option value="media">Media</option>
-                    <option value="alta">Alta</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
                 </select>
                 <button type="submit">Agregar</button>
             </form>

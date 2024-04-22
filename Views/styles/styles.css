@@ -60,6 +60,55 @@ h2 {
     font: 1.5em "Fjalla One", sans-serif;
 }
 
+/* ESTILOS DE LAS TASK CARDS */
+.task__card {
+    width: 90%;
+    background-color: var(--rich-black);
+    padding: 1em;
+    margin: 1em auto;
+    border: 1px solid var(--rich-black);
+    border-radius: 5px;
+    box-shadow: 3px 6px 10px var(--rich-black);
+}
+
+.task__card__title {
+    color: var(--white);
+    font-size: 1.3em;
+}
+
+.task__card__desc {
+    width: 60%;
+    padding: .5em;
+    font-style: italic;
+}
+
+.task__card__priority {
+    padding: .5em;
+    font-weight: bold;
+}
+
+.task__card__btn__container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: baseline;
+    margin: .5em;
+}
+
+.btn__edit {
+    background-color: var(--white);
+}
+
+.btn__delete {
+    background-color: var(--red-pantone);
+}
+
+.btn__verdetalle {
+    background-color: var(--rich-black);
+    color: var(--white);
+    border: 1px solid var(--white);
+}
+
+
 /* ESTILOS DEL ASIDE CONTAINER */
 .aside__container {
     background: linear-gradient(var(--rich-black) 50%, var(--spring-green));
