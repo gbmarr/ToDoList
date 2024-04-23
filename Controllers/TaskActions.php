@@ -3,8 +3,7 @@
 // Listar tareas, agregar tarea, marcar como finalizada y eliminar tarea
 
 require_once '../Models/Database.php';
-include_once '../Models/Task.php';
-
+require_once '../Models/Task.php';
 
 function getTasks() {
     try {
@@ -72,34 +71,69 @@ function deleteTask(){
                 $taskId = $datos['taskId'];
                 $DB = new Database();
                 $query = "DELETE FROM tareas WHERE Id = ?";
-                $DB->executeQuery($query, [$taskId]);
+                $result = $DB->executeQuery($query, [$taskId]);
             }else{
-                echo "ID DE TAREA INCORRECTO";
+                header("Location: ../Views/index.php?delete=error");
             }
         }
     } catch(PDOException $e){
         echo "Error al eliminar la tarea." . $e->getMessage() ;
     }
+
+    if($result){
+        header("Location: ../Views/index.php?delete=success");
+    }else{
+        header("Location: ../Views/index.php?delete=error");
+    }
 }
 
 function addTask(){
     try{
-        if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])){
+        if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])){
             $title = $_POST['tarea'];
             $desc = $_POST['desc'];
         $prioridad = $_POST['importancia'];
 
         $DB = new Database();
-        $query = "INSERT INTO `tareas` (`Title`, `Description`, `Priority`) VALUES (?, ?, ?)";
+        $query = "INSERT INTO tareas (`Title`, `Description`, `Priority`) VALUES (?, ?, ?)";
         $params = [$title, $desc, $prioridad];
         $result = $DB->executeQuery($query, $params);
         if($result){
-            header("Location: ../index.php");
+            header("Location: ../Views/index.php?add=success");
         }else{
-            echo "ERROR AL INSERTAR LA TAREA EN LA BD.";
+            header("Location: ../Views/index.php?add=error");
             }
         }
     }catch(PDOException $e){
         echo "Error en el servidor." . $e->getMessage();
     }
 }
+
+function editTask(){
+    try {
+        if($_SERVER['REQUEST_METHOD'] ==='GET' && isset($_GET['taskId'])){
+            $id = $_GET['taskId'];
+            // falta obtener los demas valores del registro
+            
+            $DB = new Database();
+            $query = "UPDATE `tareas` SET `Title`= ?, `Description`= ?, `Priority`= ?, `Completed`= ? WHERE `Id`= ?";
+            $result = $DB->executeQuery($query);
+        }
+    } catch (\Throwable $e) {
+        echo "Error en el servidor." . $e->getMessage();
+    }
+
+    if($result){
+        echo "Se editó correctamente";
+    }else{
+        echo "No se editó correctamente";
+    }
+}
+
+// function showHome(){
+//     try {
+//         implementar muestra del home
+//     } catch (\Throwable $th) {
+//         echo 'Error: '.$th;
+//     }
+// }

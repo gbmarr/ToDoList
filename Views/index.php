@@ -1,3 +1,8 @@
+<?php
+    require_once '../Controllers/TaskActions.php';
+    require_once '../Models/Task.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,19 +26,14 @@
         <section class="tasks__container">
             <h2>Tareas Pendientes</h2>
             <div class="tasks__container__list">
-                
                 <?php
-                include_once '../Controllers/TaskActions.php';
-                include_once '../Models/Task.php';
-
                 listTasks();
                 ?>
-
             </div>
         </section>
         <aside class="aside__container">
             <h2>Nombre Usuario</h2>
-            <form action="TaskActions.php" method="POST">
+            <form action="../add" method="POST">
                 <label for="name">Tarea:</label><input name="tarea" type="text">
                 <label for="desc">Descripción:</label><textarea name="desc" cols="30" rows="10"></textarea>
                 <label for="importancia">Prioridad:</label><select name="importancia">

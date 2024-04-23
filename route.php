@@ -1,7 +1,5 @@
 <?php
-
-require_once '/Views/index.php';
-require_once '/Controllers/TaskActions.php';
+require_once 'Controllers/TaskActions.php';
 
 $action = 'home';
 
