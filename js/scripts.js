@@ -19,7 +19,7 @@ function deleteTask(taskId) {
         body: JSON.stringify({ taskId: taskId }),
     }).then(response => {
         if (response.ok) {
-            reloadTaskList();
+            // reloadTaskList();
             console.log("Tarea eliminada correctamente");
         }else{
             console.log("Error al eliminar tarea");
