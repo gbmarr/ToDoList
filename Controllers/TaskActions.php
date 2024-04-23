@@ -23,7 +23,6 @@ function getTasks() {
             $nuevo->Priority = $item['Priority'];
             $nuevo->Completed = $item['Completed'];
 
-            // array_push($listaTask, $nuevo);
             $listaTask[] = $nuevo;
         }
     
@@ -47,7 +46,7 @@ function listTasks(){
                 <div>
                     <button class='btn__complete'>Completar</button>
                     <button class='btn__edit'>Editar</button>
-                    <button class='btn__delete'>Eliminar</button>
+                    <button class='btn__delete' data-id='{$task->Id}'>Eliminar</button>
                 </div>
                     <button class='btn__verdetalle'>Detalle</button>
                 </div>
@@ -61,3 +60,24 @@ function listTasks(){
 
     echo $echo;
 }
+
+// Revisar con el profe de prácticas el método
+// Error: funciona el AJAX pero no elimina el registro de la DB
+function deleteTask(){
+    if($_SERVER['REQUEST_METHOD'] === 'POST'){
+        $datos = json_decode(file_get_contents('php://input'), true);
+
+        if(isset($datos['taskId'])) {
+            $taskId = $datos['taskId'];
+            echo $taskId;
+            $DB = new Database();
+            $query = "DELETE FROM `tareas` WHERE Id = ?";
+            $DB->executeQuery($query, [$taskId]);
+            echo "TAREA ELIMINADA CORRECTAMENTE";
+        }else{
+            echo "ID DE TAREA INCORRECTO";
+        }
+    }
+}
+
+

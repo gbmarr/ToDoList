@@ -51,6 +51,7 @@ h1 {
     background-color: var(--spring-green);
     width: 80%;
     height: 90%;
+    overflow-y: scroll;
     margin: 1em auto;
     padding: 1em;
     border-radius: 10px;

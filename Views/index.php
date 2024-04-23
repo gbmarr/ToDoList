@@ -21,12 +21,14 @@
         <section class="tasks__container">
             <h2>Tareas Pendientes</h2>
             <div class="tasks__container__list">
+                
                 <?php
                 include_once '../Controllers/TaskActions.php';
                 include_once '../Models/Task.php';
 
                 listTasks();
                 ?>
+
             </div>
         </section>
         <aside class="aside__container">
@@ -50,6 +52,6 @@
         <p class="footer__text">[Diseñado por ...]</p>
     </footer>
     <!-- script de navbar -->
-    <script src="js/navbar.js"></script>
+    <script src="../js/scripts.js"></script>
 </body>
 </html>
