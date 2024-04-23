@@ -9,7 +9,7 @@ include_once '../Models/Task.php';
 function getTasks() {
     try {
         $DB = new Database();
-        $query = "SELECT `Id`, `Title`, `Description`, `Priority`, `Completed` FROM `tareas`";
+        $query = "SELECT `Id`, `Title`, `Description`, `Priority`, `Completed` FROM tareas";
         $sentencia = $DB->executeQuery($query);
         $tasks = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 
@@ -64,20 +64,42 @@ function listTasks(){
 // Revisar con el profe de prácticas el método
 // Error: funciona el AJAX pero no elimina el registro de la DB
 function deleteTask(){
-    if($_SERVER['REQUEST_METHOD'] === 'POST'){
-        $datos = json_decode(file_get_contents('php://input'), true);
-
-        if(isset($datos['taskId'])) {
-            $taskId = $datos['taskId'];
-            echo $taskId;
-            $DB = new Database();
-            $query = "DELETE FROM `tareas` WHERE Id = ?";
-            $DB->executeQuery($query, [$taskId]);
-            echo "TAREA ELIMINADA CORRECTAMENTE";
-        }else{
-            echo "ID DE TAREA INCORRECTO";
+    try{
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $datos = json_decode(file_get_contents('php://input'), true);
+            
+            if(isset($datos['taskId'])) {
+                $taskId = $datos['taskId'];
+                $DB = new Database();
+                $query = "DELETE FROM tareas WHERE Id = ?";
+                $DB->executeQuery($query, [$taskId]);
+            }else{
+                echo "ID DE TAREA INCORRECTO";
+            }
         }
+    } catch(PDOException $e){
+        echo "Error al eliminar la tarea." . $e->getMessage() ;
     }
 }
 
+function addTask(){
+    try{
+        if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])){
+            $title = $_POST['tarea'];
+            $desc = $_POST['desc'];
+        $prioridad = $_POST['importancia'];
 
+        $DB = new Database();
+        $query = "INSERT INTO `tareas` (`Title`, `Description`, `Priority`) VALUES (?, ?, ?)";
+        $params = [$title, $desc, $prioridad];
+        $result = $DB->executeQuery($query, $params);
+        if($result){
+            header("Location: ../index.php");
+        }else{
+            echo "ERROR AL INSERTAR LA TAREA EN LA BD.";
+            }
+        }
+    }catch(PDOException $e){
+        echo "Error en el servidor." . $e->getMessage();
+    }
+}

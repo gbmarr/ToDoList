@@ -33,17 +33,17 @@
         </section>
         <aside class="aside__container">
             <h2>Nombre Usuario</h2>
-            <form action="" method="">
+            <form action="TaskActions.php" method="POST">
                 <label for="name">Tarea:</label><input name="tarea" type="text">
                 <label for="desc">Descripción:</label><textarea name="desc" cols="30" rows="10"></textarea>
-                <label for="importancia">Prioridad:</label><select name="importancia" id="">
+                <label for="importancia">Prioridad:</label><select name="importancia">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
                     <option value="5">5</option>
                 </select>
-                <button type="submit">Agregar</button>
+                <button type="submit" name="submit">Agregar</button>
             </form>
         </aside>
     </main>
