@@ -4,7 +4,7 @@ class ConfigApp{
     public static $ACTION = "action";
     public static $PARAMS = "params";
     public static $ACTIONS = [
-        'home' => 'mostrarIndex',
+        'home' => 'showHome',
         'add' => 'addTask',
         'edit' => 'editTask',
         'delete' => 'deleteTask',

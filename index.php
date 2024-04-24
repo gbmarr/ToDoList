@@ -1,12 +1,15 @@
 <?php
-    require_once '../Controllers/TaskActions.php';
-    require_once '../Models/Task.php';
+    require_once '/router.php';
+    require_once '/Controllers/TaskActions.php';
+    require_once '/Models/Task.php';
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- url base -->
+    <base href="'.BASE_URL.'"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- styles -->
     <link rel="stylesheet" href="styles/styles.css">

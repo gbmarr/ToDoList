@@ -1,9 +1,12 @@
 <?php
 
-require_once 'config/ConfigApp.php';
-require_once 'Controllers/TaskActions.php';
-require_once 'Models/Database.php';
-require_once 'Views/index.php';
+require_once '/Config/ConfigApp.php';
+require_once '/Controllers/TaskActions.php';
+require_once '/Models/Database.php';
+require_once '/index.php';
+
+define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' .
+$_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
 function parseUrl($url){
     $arrAction = explode("/", $url);

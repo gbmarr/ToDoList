@@ -90,8 +90,8 @@ function deleteTask(){
 function addTask(){
     try{
         if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])){
-            $title = $_POST['tarea'];
-            $desc = $_POST['desc'];
+        $title = $_POST['tarea'];
+        $desc = $_POST['desc'];
         $prioridad = $_POST['importancia'];
 
         $DB = new Database();
@@ -113,11 +113,14 @@ function editTask(){
     try {
         if($_SERVER['REQUEST_METHOD'] ==='GET' && isset($_GET['taskId'])){
             $id = $_GET['taskId'];
-            // falta obtener los demas valores del registro
-            
+            $title = $_GET['title'];
+            $description = $_GET['description'];
+            $priority = $_GET['priority'];
+            // obtener los demas valores del registro
+            $params = array($title, $description, $priority, $id);
             $DB = new Database();
-            $query = "UPDATE `tareas` SET `Title`= ?, `Description`= ?, `Priority`= ?, `Completed`= ? WHERE `Id`= ?";
-            $result = $DB->executeQuery($query);
+            $query = "UPDATE `tareas` SET `Title`= ?, `Description`= ?, `Priority`= ? WHERE `Id`= ?";
+            $result = $DB->executeQuery($query, $params);
         }
     } catch (\Throwable $e) {
         echo "Error en el servidor." . $e->getMessage();
@@ -130,10 +133,10 @@ function editTask(){
     }
 }
 
-// function showHome(){
-//     try {
-//         implementar muestra del home
-//     } catch (\Throwable $th) {
-//         echo 'Error: '.$th;
-//     }
-// }
+function showHome(){
+    try {
+        header("Location: ../Views/index.php");
+    } catch (\Throwable $th) {
+        echo 'Error: '.$th;
+    }
+}
