@@ -1,35 +1,31 @@
 <?php
 
-require_once '/Config/ConfigApp.php';
-require_once '/Controllers/TaskActions.php';
-require_once '/Models/Database.php';
-require_once '/index.php';
+require_once 'config/ConfigApp.php';
+require_once 'view/TareasView.php';
+require_once 'controller/TareasController.php';
 
-define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' .
-$_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
+$controller = new TareasController();
 
 function parseUrl($url){
-    $arrAction = explode("/", $url);
-    $accionReturn[ConfigApp::$ACTION] = $arrAction[0];
-    $accionReturn[ConfigApp::$PARAMS] = isset($arrAction[1]) ? array_slice($arrAction, 1) : null;
+    $arrDatos = explode('/',$url);
+    $arrParseado[ConfigApp::$ACTION] = $arrDatos[0];
+    $arrParseado[ConfigApp::$PARAMS] = isset($arrDatos[1]) ? array_slice($arrDatos, 1) : null;
 
-    return $accionReturn;
+    return $arrParseado;
 }
 
 $urlDatos = parseUrl($_GET[ConfigApp::$ACTION]);
-$action = $urlData[ConfigApp::$ACTION];
+$action = $urlDatos[ConfigApp::$ACTION];
 
-if(array_key_exists($action,ConfigApp::$ACTIONS)){
+if(array_key_exists($action, ConfigApp::$ACTIONS)){
     $params = $urlDatos[ConfigApp::$PARAMS];
     $method = ConfigApp::$ACTIONS[$action];
 
     if(isset($params) && $params != null){
-        $method($params);
+        $controller->$method($params);
     }else{
-        $method();
+        $controller->$method();
     }
 }else{
-    // mostrarIndex();
+    echo "<h1>ERROR EN LA CARGA DE DATOS</h1>";
 }
-
-?>

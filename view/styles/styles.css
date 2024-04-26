@@ -141,7 +141,7 @@ input, select, textarea {
     resize: none;
 }
 
-button {
+a, button {
     background-color: var(--spring-green);
     font-weight: bold;
     width: fit-content;
