@@ -41,12 +41,16 @@ class TareasView{
                                         <article class='task__card__desc'>$tarea->Descripcion</article>
                                         <p class='task__card__priority'>Prioridad: $tarea->Prioridad</p>
                                     <div class='task__card__btn__container'>
-                                    <div>
-                                        <a href='complete' class='btn__complete'>Completar</a>
-                                        <a href='edit' class='btn__edit'>Editar</a>
-                                        <a href='delete' class='btn__delete'>Eliminar</a>
-                                    </div>
-                                        <a href='detail' class='btn__verdetalle'>Detalle</a>
+                                    <div>"; ?>
+                                    <?php if ($tarea->Completa === 0){
+                                        $card .= "<a href='complete/$tarea->Id' class='btn__complete'>Completar</a>
+                                        <a href='edit/$tarea->Id' class='btn__edit'>Editar</a>";
+                                    } elseif($tarea->Completa === 1) {
+                                        $card .= "<a href='delete/$tarea->Id' class='btn__delete'>Eliminar</a>";
+                                    }
+                                    $card .=
+                                    "</div>
+                                        <a href='detail/$tarea->Id' class='btn__verdetalle'>Detalle</a>
                                     </div>
                                     </div>";
                                 }  
@@ -84,11 +88,95 @@ class TareasView{
     }
 
     function Formulario($Tarea){
-        
+        if(isset($Tarea) && isset($_GET['action'])){
+            ?>
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <!-- fonts -->
+                <link rel="preconnect" href="https://fonts.googleapis.com">
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+                <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+                <!-- styles -->
+                <link rel="stylesheet" href="../view/styles/styles.css">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title> <?php echo $this->Titulo ?> </title>
+            </head>
+            <body>
+                <header class="header">
+                    <h1>To Do List</h1>
+                </header>
+                <main class="main__container">
+                    <section class="form__container">
+                    <form action="update" method="POST">
+                        <?php 
+                        $echo =
+                        "<label for='name'>Tarea:</label><input name='titulo' type='text' value='$Tarea->Titulo'>
+                        <label for='desc'>Descripción:</label><textarea name='desc' cols='30' rows='10'>$Tarea->Descripcion</textarea>
+                        <label for='prioridad'>Prioridad:</label><select name='prioridad' value='$Tarea->Prioridad'>
+                            <option value='$Tarea->Prioridad' selected>$Tarea->Prioridad</option>
+                            <option value='1'>1</option>
+                            <option value='2'>2</option>
+                            <option value='3'>3</option>
+                            <option value='4'>4</option>
+                            <option value='5'>5</option>
+                        </select>";
+                        echo $echo;
+                        ?>
+                        <button type="submit" name="submitEdit">Guardar Cambios</button>
+                    </form>
+                    </section>
+                </main>
+                <footer>
+                    <p class="footer__text">[Diseñado por ...]</p>
+                </footer>
+            </body>
+            </html>
+            <?php
+        }
     }
 
-    function VerDetalle(){
-        
+    function Detalle($Tarea){
+        if(isset($Tarea) && isset($_GET['action'])){
+            ?>
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <!-- fonts -->
+                <link rel="preconnect" href="https://fonts.googleapis.com">
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+                <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+                <!-- styles -->
+                <link rel="stylesheet" href="../view/styles/styles.css">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title> <?php echo $this->Titulo ?> </title>
+            </head>
+            <body>
+                <header class="header">
+                    <h1>To Do List</h1>
+                </header>
+                <main class="main__container">
+                    <section class="form__container">
+                    <form action="update" method="POST">
+                        <?php 
+                        $echo =
+                        "<label for='name'>Tarea:</label><input name='titulo' type='text' value='$Tarea->Titulo' readonly>
+                        <label for='desc'>Descripción:</label><textarea name='desc' cols='30' rows='10' readonly>$Tarea->Descripcion</textarea>
+                        <label for='prioridad'>Prioridad:</label><input name='prioridad' type='number' value='$Tarea->Prioridad' readonly>";
+                        echo $echo;
+                        ?>
+                    </form>
+                    </section>
+                </main>
+                <footer>
+                    <p class="footer__text">[Diseñado por ...]</p>
+                </footer>
+            </body>
+            </html>
+            <?php
+        }
     }
 
 }
