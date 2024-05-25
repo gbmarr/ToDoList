@@ -20,7 +20,7 @@ $action = $urlDatos[ConfigApp::$ACTION];
 if(array_key_exists($action, ConfigApp::$ACTIONS)){
     $params = $urlDatos[ConfigApp::$PARAMS];
     $method = ConfigApp::$ACTIONS[$action];
-
+    
     if(isset($params) && $params != null){
         $controller->$method($params);
     }else{

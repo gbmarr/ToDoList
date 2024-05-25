@@ -6,9 +6,10 @@ class ConfigApp{
     public static $ACTIONS = [
         '' => "ListarTareas",
         'insert' => "InsertarTarea",
-        'update' => "ActualizarTarea",
+        'edit' => "ActualizarTarea",
         'complete' => "CompletarTarea",
         'detail' => "VerDetalle",
+        'update' => "ActualizarDatos",
         'delete' => "BorrarTarea"
     ];
 }

@@ -7,6 +7,7 @@ class Database{
     private $dbName;
     private $conn;
     
+    // pasar a funcion
     function __construct(){
         $this->Host = 'localhost';
         $this->dbName = 'todolist_webii;charset=utf8';
@@ -16,7 +17,6 @@ class Database{
             $conexion = "mysql:host={$this->Host};dbname={$this->dbName}";
             $this->conn = new PDO($conexion, $this->dbUser, $this->dbPass);
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
-            echo "Conexión realizada de manera exitosa";
         } catch (Exception $e) {
             echo "Error de conexión: " .$e->getMessage();
             die();
